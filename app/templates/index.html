@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>RecurCrawl - Algoritma Crawler</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container mt-5">
+            <h2 class="text-center mb-4">Analisis Kompleksitas Algoritma</h2>
+            <p class="text-center">Uji dan bandingkan algoritma crawler data media sosial Threads secara iteratif dan rekursif.</p> {% if error %} <div class="alert alert-danger" role="alert">
+                {{ error }}
+            </div> {% endif %} <form id="uploadForm" class="mb-4" enctype="multipart/form-data" action="/" method="POST">
+                <div class="mb-3">
+                    <label for="jsonInput" class="form-label">Unggah Berkas JSON</label>
+                    <input type="file" id="jsonInput" name="json_file" class="form-control" accept=".json" required>
+                </div>
+                <div class="mb-3">
+                    <label for="sizeInput" class="form-label">Ukuran Dataset (dipisahkan dengan koma)</label>
+                    <input type="text" id="sizeInput" name="dataset_sizes" class="form-control" placeholder="1000,5000,10000" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Jalankan Perbandingan</button>
+            </form>
+            <div id="resultsContainer" class="mt-4"> {% if plot_path %} <a href="{{ plot_path }}" download>
+                    <img src="{{ plot_path }}" alt="Plot Perbandingan Waktu Eksekusi" class="img-fluid">
+                </a> {% endif %} </div>
+        </div>
+    </body>
+</html>
