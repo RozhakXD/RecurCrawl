@@ -52,7 +52,22 @@ def ukur_waktu(data: list, ukuran: list) -> list:
                 "recursive_time": waktu_rekursif
             }
         )
-        print(f"Ukuran Data: {ukuran_data}, Iterative Time: {waktu_iteratif}, Recursive Time: {waktu_rekursif}")
+    from rich.console import Console
+    from rich.table import Table
+
+    console = Console()
+    table = Table(title="Perbandingan Waktu Iteratif dan Rekursif")
+    table.add_column("Ukuran Data", style="cyan", no_wrap=True)
+    table.add_column("Iterative Time", style="magenta")
+    table.add_column("Recursive Time", style="green")
+    for item in hasil:
+        table.add_row(
+            str(item["size"]),
+            str(item["iterative_time"]),
+            str(item["recursive_time"])
+        )
+    console.print(table)
+
     return hasil
 
 def rekursif(postingan: dict) -> dict:
