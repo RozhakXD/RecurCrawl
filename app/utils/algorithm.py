@@ -3,6 +3,7 @@ import matplotlib
 import json
 import os
 import time
+import pandas as pd
 matplotlib.use('Agg')
 
 def plot_waktu_perbandingan(data: list, ukuran_dataset: list) -> str:
@@ -27,7 +28,25 @@ def plot_waktu_perbandingan(data: list, ukuran_dataset: list) -> str:
     plt.savefig(diagram_path)
     plt.close()
 
-    return '/static/images/diagram.png'
+    data = {
+        "Ukuran Data": ukuran,
+        "Iterative Time": waktu_iteratif,
+        "Recursive Time": waktu_rekursif
+    }
+    df = pd.DataFrame(data)
+    fig, ax = plt.subplots(figsize=(len(df.columns) * 2, len(df) * 0.5))
+    ax.axis('tight')
+    ax.axis('off')
+    table = ax.table(cellText=df.values, colLabels=df.columns, cellLoc='center', loc='center')
+
+    tabel_path = os.path.join(diagram_dir, 'tabel.png')
+    plt.savefig(tabel_path, bbox_inches='tight')
+    plt.close()
+
+    return (
+        '/static/images/diagram.png',
+        '/static/images/tabel.png'
+    )
 
 def ukur_waktu(data: list, ukuran: list) -> list:
     hasil = []
