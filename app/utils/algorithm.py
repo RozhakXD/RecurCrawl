@@ -6,7 +6,7 @@ import time
 import pandas as pd
 matplotlib.use('Agg')
 
-def plot_waktu_perbandingan(data: list, ukuran_dataset: list) -> str:
+def plot_waktu_perbandingan(data: list, ukuran_dataset: list) -> tuple:
     sorted_data = sorted(data, key=lambda x: x["create_at"], reverse=True)
     hasil = ukur_waktu(data=sorted_data, ukuran=ukuran_dataset)
 
