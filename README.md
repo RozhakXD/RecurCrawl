@@ -4,10 +4,10 @@
 **RecurCrawl** adalah aplikasi berbasis web yang membandingkan efisiensi runtime antara algoritma crawler iteratif dan rekursif dalam pengumpulan data balasan dari platform Threads. Pengujian dilakukan di hosting **Anymhost** dengan memori 10GB untuk melihat performa pada dataset ukuran 1000, 5000, dan 10.000.
 
 ## Fitur
+- **Analisis Performa**: Membandingkan performa kedua algoritma pada dataset yang berbeda ukuran.
 - **Unggah Dataset**: Pengguna dapat mengunggah file JSON sebagai dataset untuk pengujian.
 - **Pilih Algoritma**: Pilih antara metode iteratif atau rekursif.
 - **Hasil Visual**: Hasil runtime ditampilkan secara dinamis dalam bentuk tabel dan grafik.
-- **Analisis Performa**: Membandingkan performa kedua algoritma pada dataset yang berbeda ukuran.
 
 ## Teknologi
 - Backend: Flask (Python)
