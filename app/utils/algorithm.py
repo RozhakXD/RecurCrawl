@@ -99,14 +99,17 @@ def rekursif(postingan: dict) -> dict:
         "reply_count": postingan["reply_count"],
         "replies": []
     }
+
     def ambil_balasan(balasan):
         for balas in balasan:
-            hasil["replies"].append(
-                {
-                    "username": balas["username"],
-                    "reply_text": balas["reply_text"]
-                }
-            )
+            reply = {
+                "username": balas["username"],
+                "reply_text": balas["reply_text"],
+                "replies": []
+            }
+            if "reply" in balas and balas["reply"]:
+                reply["replies"] = ambil_balasan(balas["reply"])["replies"]
+            hasil["replies"].append(reply)
 
     ambil_balasan(postingan["reply"])
     return hasil
