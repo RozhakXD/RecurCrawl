@@ -100,16 +100,21 @@ def rekursif(postingan: dict) -> dict:
         "replies": []
     }
 
-    def ambil_balasan(balasan):
-        for balas in balasan:
-            reply = {
-                "username": balas["username"],
-                "reply_text": balas["reply_text"],
-                "replies": []
-            }
-            if "reply" in balas and balas["reply"]:
-                reply["replies"] = ambil_balasan(balas["reply"])["replies"]
-            hasil["replies"].append(reply)
+    def ambil_balasan(balasan: list) -> dict:
+        if not balasan:
+            return {"replies": []}
+
+        balas = balasan[0]
+        reply = {
+            "username": balas["username"],
+            "reply_text": balas["reply_text"],
+            "replies": []
+        }
+        if "reply" in balas and balas["reply"]:
+            reply["replies"] = ambil_balasan(balas["reply"])["replies"]
+
+        hasil["replies"].append(reply)
+        ambil_balasan(balasan[1:])
 
     ambil_balasan(postingan["reply"])
     return hasil
